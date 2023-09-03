@@ -8,7 +8,7 @@ import ISessionManager from './SessionManager';
 import { MatchingInterface } from './Session';
 import AppStateId from './AppState';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
   },
   readyBoard: {

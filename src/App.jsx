@@ -9,7 +9,7 @@ import Matching from './Matching';
 import Game from './Game';
 import Error from './Error';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   container: {
     width: '100vw',
     height: '100vh',

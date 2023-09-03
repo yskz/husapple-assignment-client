@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 import { PlayerCard, PointCard } from './GameCard';
 
-const useScoreGridStyles = makeStyles((theme) => ({
+const useScoreGridStyles = makeStyles((_theme) => ({
   root: {
     minHeight: '5em',
   },
@@ -62,7 +62,7 @@ ScoreGrid.propTypes = {
 };
 
 
-const useBidGridStyles = makeStyles((theme) => ({
+const useBidGridStyles = makeStyles((_theme) => ({
   root: {
     minHeight: '5em',
   },
@@ -95,7 +95,7 @@ BidGrid.propTypes = {
 };
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
     minHeight: '7em',
   },

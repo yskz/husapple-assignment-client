@@ -5,7 +5,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { BidGrid, ScoreGrid } from './PlayerCardField';
 import { PlayerCard } from './GameCard';
 
-const useHandGridStyles = makeStyles((theme) => ({
+const useHandGridStyles = makeStyles((_theme) => ({
   root: {
     minHeight: '5em',
   },
@@ -46,7 +46,7 @@ HandGrid.propTypes = {
 };
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
     minHeight: '7em',
   },

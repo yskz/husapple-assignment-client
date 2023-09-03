@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardContent, Typography, Grid, Grow } from '@material-ui/core';
 
-const useGameCardStyles = makeStyles((theme) => ({
+const useGameCardStyles = makeStyles((_theme) => ({
   root: {
     margin: '0.1em',
   },

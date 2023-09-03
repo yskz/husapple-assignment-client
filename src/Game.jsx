@@ -12,7 +12,7 @@ import { GameInterface } from './Session';
 import { GameInfo as _gameInfo } from './protocol';
 const GameInfo = _gameInfo.GameInfo;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
     width: '100vw',
     height: '100vh',

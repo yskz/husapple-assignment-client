@@ -10,7 +10,7 @@ export class PlayerResult {
   }
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((_theme) => ({
   root: {
   },
   resultListRowRank: {

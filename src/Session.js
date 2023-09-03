@@ -119,7 +119,7 @@ export default class Session {
         const closeEventListener = () => { this.getState().closeSocket(this); }
         ws.addEventListener('close', closeEventListener);
         this._closeEventListener = closeEventListener;
-        const errorEventListener = (e) => { this.getState().error(this); }
+        const errorEventListener = (_e) => { this.getState().error(this); }
         ws.addEventListener('error', errorEventListener);
         this._errorEventListener = errorEventListener;
     }
