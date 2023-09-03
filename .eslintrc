@@ -4,7 +4,9 @@
     "plugin:node/recommended"
   ],
   "plugins": ["react"],
-  "parserOptions": {},
+  "parserOptions": {
+    "sourceType": "module"
+  },
   "env": {
     "browser": true,
     "es6": true

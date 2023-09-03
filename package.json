@@ -9,7 +9,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,5 +34,9 @@
   },
   "author": "Yoshikazu Satake <yskz@metamagic.co.jp>",
   "license": "AGPL-3.0-or-later",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint-plugin-node": "^11.1.0"
+  }
 }
