@@ -249,6 +249,7 @@ Matching.RequestReadyGame = class extends Matching.JoinedBase {
         session.sendMessage(new Message.Matching.RequestReadyGame(reqId));
     }
     hookReceiveMessage(session, message) {
+
         const msg = Message.parseMessage(message);
         if (!msg || !(msg instanceof Message.Matching.ResponseReadyGame) || (msg.requestId !== this._reqId)) {
             super.hookReceiveMessage(session, message);
@@ -259,6 +260,14 @@ Matching.RequestReadyGame = class extends Matching.JoinedBase {
 }
 
 Matching.WaitGameStart = class extends Matching.JoinedBase {
+    hookReceiveMessage(session, message){  
+        const msg = Message.parseMessage(message);
+        if (msg && (msg instanceof Message.Matching.GameStart)){
+            session.changeState(new Game.StartGame(msg.getGameInfo()));
+            return;
+        }
+        super.hookReceiveMessage(session, message);
+    }
 }
 
 
