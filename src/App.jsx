@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Grid } from '@mui/material';
 import ISessionManager from './SessionManager';
@@ -19,7 +19,7 @@ function App() {
       setStateId(AppStateId.error);
     }
   }
-  const setStateId = (id) => {
+  const setStateId = (id, playerNameForSession) => {
     if (id === stateId) return;
     switch(id) {
     case AppStateId.matching: {
@@ -28,7 +28,8 @@ function App() {
       if (curSession) {
         sessionManager.removeSession(curSession);
       }
-      const session = sessionManager.createSession(setErrorMessage, playerName);
+      const name = playerNameForSession || playerName;
+      const session = sessionManager.createSession(setErrorMessage, name);
       session.start();
       break;
     }
@@ -37,18 +38,15 @@ function App() {
     }}
     _setStateId(id);
   }
-  const refLatestSetStateId = useRef();
-  refLatestSetStateId.current = setStateId;
-
-  useEffect(() => {
-    const setStateId = refLatestSetStateId.current;
-    setStateId((playerName.length > 0) ? AppStateId.matching : AppStateId.inputPlayerName);
-  }, [playerName]);
+  const decidePlayerName = (name) => {
+    setPlayerName(name);
+    setStateId(AppStateId.matching, name);
+  }
 
   let content;
   switch(stateId) {
   case AppStateId.inputPlayerName: {
-    content = <InputPlayerName setPlayerName={setPlayerName} />
+    content = <InputPlayerName setPlayerName={decidePlayerName} />
     break;
   }
   case AppStateId.matching: {
