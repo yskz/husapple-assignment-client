@@ -104,10 +104,9 @@ export default class Session {
 
     createWebSocket() {
         this.removeWebSocket();
-        const env = process.env;
-        console.log(env);
-        const wsHost = env.REACT_APP_SERVER_HOST || 'localhost';
-        const wsPort = env.REACT_APP_SERVER_PORT || 4000;
+        const env = import.meta.env;
+        const wsHost = env.VITE_SERVER_HOST || 'localhost';
+        const wsPort = env.VITE_SERVER_PORT || 4000;
         const ws = new WebSocket(`ws://${wsHost}:${wsPort}`);
         this._ws = ws;
         const openEventListener = () => { this.getState().openSocket(this); }
