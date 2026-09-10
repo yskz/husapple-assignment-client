@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import InfoBoard from './InfoBoard';
 import MyPlayerCardField from './MyPlayerCardField';
 import PointCardField from './PointCardField';
@@ -9,28 +8,9 @@ import Result, { PlayerResult } from './GameResult';
 import AppStateId from './AppState';
 import ISessionManager from './SessionManager';
 import { GameInterface } from './Session';
-import { GameInfo as _gameInfo } from './protocol';
-const GameInfo = _gameInfo.GameInfo;
-
-const useStyles = makeStyles((_theme) => ({
-  root: {
-    width: '100vw',
-    height: '100vh',
-    backgroundColor: '#004000',
-  },
-  infoBoardBox: {
-  },
-  myPlayerCardFieldBox: {
-    position: 'absolute',
-    bottom: 0,
-  },
-  scoreAndOtherPlayerBox: {
-    overflow: 'auto',
-    overflowX: 'hidden',
-    minHeight: '7em',
-    maxHeight: 'calc(100vh - 8.8em)',
-  },
-}));
+import * as ProtocolModule from './protocol';
+const Protocol = ProtocolModule;
+const GameInfo = Protocol.GameInfo;
 
 const unexpectedErrorText = '想定外のエラーが発生しました';
 const infoMessages = {
@@ -98,7 +78,6 @@ function createPlayerResults(gameInfo) {
 }
 
 function GameMain(props) {
-  const classes = useStyles();
   const [infoText, setInfoText] = useState(infoMessages.bidding);
   const [gameInfo, setGameInfo] = useState(props.gameInfo);
   const [dispGameInfo, setDispGameInfo] = useState(null);
@@ -203,15 +182,15 @@ function GameMain(props) {
   const curGameInfo = dispGameInfo ? dispGameInfo : gameInfo;
   const infoBoardProps = infoText ? { text: infoText } : {};
   return (
-    <div className={classes.root}>
-      <div className={classes.infoBoardBox}>
+    <div style={{ width: '100vw', height: '100vh', backgroundColor: '#004000' }}>
+      <div>
         <InfoBoard {...infoBoardProps} />
       </div>
-      <div className={classes.scoreAndOtherPlayerBox}>
+      <div style={{ overflow: 'auto', overflowX: 'hidden', minHeight: '7em', maxHeight: 'calc(100vh - 8.8em)' }}>
         {getPointCardField(curGameInfo)}
         {getPlayerCardFields(curGameInfo)}
       </div>
-      <div className={classes.myPlayerCardFieldBox}>
+      <div style={{ position: 'absolute', bottom: 0 }}>
         {getMyPlayerCardField(disableSelectCard, setDisableSelectCard, curGameInfo)}
       </div>
     </div>

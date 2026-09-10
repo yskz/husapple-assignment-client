@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import ReadyBoard from './MatchingReadyBoard';
 import PlayerListBoard from './MatchingPlayerListBoard';
 import ISessionManager from './SessionManager';
 import { MatchingInterface } from './Session';
 import AppStateId from './AppState';
-
-const useStyles = makeStyles((_theme) => ({
-  root: {
-  },
-  readyBoard: {
-    marginTop: '1em',
-    marginBottom: '1em',
-  },
-}));
 
 function convPlayerList(msgPlayerInfos) {
   return msgPlayerInfos.map(v => {
@@ -28,7 +18,6 @@ function convPlayerList(msgPlayerInfos) {
 }
 
 function Matching(props) {
-  const classes = useStyles();
   const [procSetGameReady, setProcSetGameReady] = useState(null);
   const [playerList, setPlayerList] = useState([]);
 
@@ -67,9 +56,9 @@ function Matching(props) {
 
   const procSetReady = procSetGameReady ? () => { procSetGameReady(); } : null;
   return (
-    <Grid className={classes.root} container direction="column-reverse" justify="center" alignItems="center">
-      <Grid className={classes.readyBoard} item>
-        <ReadyBoard className={classes.readyBoard} procSetReady={procSetReady} />
+    <Grid container direction="column-reverse" alignItems="center" sx={{ justifyContent: 'center' }}>
+      <Grid item sx={{ marginTop: '1em', marginBottom: '1em' }}>
+        <ReadyBoard procSetReady={procSetReady} />
       </Grid>
       <Grid item>
         <PlayerListBoard playerList={convPlayerList(playerList)} height="80vh"/>

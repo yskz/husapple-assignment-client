@@ -1,42 +1,32 @@
 {
   "name": "number-auction-game-client",
   "version": "0.1.0",
+  "type": "module",
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^12.8.3",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^7.3.11",
+    "@mui/system": "^7.3.11",
     "prop-types": "^15.8.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "vite",
+    "build": "vite build",
+    "test": "vitest run"
   },
   "author": "Yoshikazu Satake <yskz@metamagic.co.jp>",
   "license": "AGPL-3.0-or-later",
   "private": true,
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "eslint-plugin-node": "^11.1.0"
+    "@testing-library/dom": "^10.0.0",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^26.0.0",
+    "vite": "^7.3.6",
+    "vitest": "^3.2.7"
   }
 }

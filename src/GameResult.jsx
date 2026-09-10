@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardContent, Paper, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Grid, Button } from '@material-ui/core';
+import { Card, CardHeader, CardContent, Paper, TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Grid, Button } from '@mui/material';
 
 export class PlayerResult {
   constructor(name, score) {
@@ -10,36 +9,20 @@ export class PlayerResult {
   }
 }
 
-const useStyles = makeStyles((_theme) => ({
-  root: {
-  },
-  resultListRowRank: {
-  },
-  resultListRowName: {
-    minWidth: '10em',
-  },
-  resultListRowScore: {
-  },
-  nextGameButtonContainer: {
-    marginTop: '1em',
-  },
-}));
-
-function createListItem(classes, key, result) {
+function createListItem(key, result) {
   return (
     <TableRow key={key}>
-      <TableCell className={classes.resultListRowRank} align="center">{result.rank}</TableCell>
-      <TableCell className={classes.resultListRowName} align="left">{result.name}</TableCell>
-      <TableCell className={classes.resultListRowScore} align="right">{result.score}</TableCell>
+      <TableCell align="center">{result.rank}</TableCell>
+      <TableCell align="left" sx={{ minWidth: '10em' }}>{result.name}</TableCell>
+      <TableCell align="right">{result.score}</TableCell>
     </TableRow>
   );
 }
 
 function GameResult(props) {
-  const classes = useStyles();
   const [disableButton, setDisableButton] = useState(false);
   const results = []; // props.playerResultsから表示用としてランクでソートしたリストを作成する
-  const listItems = results.map((v, i) => { return createListItem(classes, i, v); });
+  const listItems = results.map((v, i) => { return createListItem(i, v); });
   const procClickButton = () => {
     if (!disableButton) {
       setDisableButton(true);
@@ -48,7 +31,7 @@ function GameResult(props) {
   }
   return (
     <div className="GameResult">
-      <Card className={classes.root}>
+      <Card>
         <CardHeader title="ゲーム結果" />
         <CardContent>
           <TableContainer component={Paper}>
@@ -65,7 +48,7 @@ function GameResult(props) {
               </TableBody>
             </Table>
           </TableContainer>
-          <Grid container direction="row" justify="center" alignItems="center" className={classes.nextGameButtonContainer}>
+          <Grid container direction="row" alignItems="center" sx={{ marginTop: '1em', justifyContent: 'center' }}>
             <Grid item>
               <Button variant="contained" disabled={disableButton} color="primary" onClick={procClickButton}>もう一度プレイする</Button>
             </Grid>

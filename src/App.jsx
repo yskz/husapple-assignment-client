@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import ISessionManager from './SessionManager';
 import AppStateId from './AppState';
 import InputPlayerName from './InputPlayerName';
@@ -9,15 +8,7 @@ import Matching from './Matching';
 import Game from './Game';
 import Error from './Error';
 
-const useStyles = makeStyles((_theme) => ({
-  container: {
-    width: '100vw',
-    height: '100vh',
-  },
-}));
-
 function App() {
-  const classes = useStyles();
   const [stateId, _setStateId] = useState(AppStateId.inputPlayerName);
   const [playerName, setPlayerName] = useState("");
   const [errorMessage, _setErrorMessage] = useState(null);
@@ -74,7 +65,7 @@ function App() {
   }}
   return (
     <div className="App">
-      <Grid className={classes.container} container direction="row" justify="center" alignItems="center">
+      <Grid container direction="row" alignItems="center" sx={{ width: '100vw', height: '100vh', justifyContent: 'center' }}>
         {content}
       </Grid>
     </div>
