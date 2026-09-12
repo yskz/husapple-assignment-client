@@ -10,7 +10,7 @@ import ISessionManager from './SessionManager';
 import { GameInterface } from './Session';
 import * as ProtocolModule from './protocol';
 const Protocol = ProtocolModule;
-const GameInfo = Protocol.GameInfo;
+const GameInfo = Protocol.GameInfo.GameInfo;
 
 const unexpectedErrorText = '想定外のエラーが発生しました';
 const infoMessages = {
