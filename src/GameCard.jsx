@@ -11,7 +11,9 @@ function GameCard(props) {
   const contentSx = {
     padding: '0.2em',
   };
-  const gridSx = half ? { minWidth: '1.6em', minHeight: '3.8em' } : { minWidth: '2.8em', minHeight: '3.8em' };
+  const halfWidth = 1.6 * 1.3; // 1.3倍
+  const fullWidth = 2.8 * 1.3; // 1.3倍
+  const gridSx = half ? { minWidth: `${halfWidth}em`, minHeight: '3.8em' } : { minWidth: `${fullWidth}em`, minHeight: '3.8em' };
   const gridSxMerged = { justifyContent: 'center', alignItems: 'center', ...gridSx };
   const textSx = pointCard
     ? (number < 0 ? { color: '#ff0000', padding: 0 } : { color: '#0000ff', padding: 0 })
