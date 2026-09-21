@@ -1,80 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardContent, Typography, Grid, Grow } from '@material-ui/core';
-
-const useGameCardStyles = makeStyles((_theme) => ({
-  root: {
-    margin: '0.1em',
-  },
-  pointOpenContent: {
-    padding: '0.2em',
-    "&:last-child": {
-      paddingBottom: '0.2em',
-    },
-  },
-  pointCloseContent: {
-    backgroundColor: '#9090ff',
-    padding: '0.2em',
-    "&:last-child": {
-      paddingBottom: '0.2em',
-    },
-  },
-  cardOpenContent: {
-    padding: '0.2em',
-    "&:last-child": {
-      paddingBottom: '0.2em',
-    },
-  },
-  cardCloseContent: {
-    backgroundColor: '#b0b0b0',
-    padding: '0.2em',
-    "&:last-child": {
-      paddingBottom: '0.2em',
-    },
-  },
-  fullGrid: {
-    minWidth: '2.8em',
-    minHeight: '3.8em',
-  },
-  halfGrid: {
-    minWidth: '1.6em',
-    minHeight: '3.8em',
-  },
-  pointPlusText: {
-    color: '#0000ff',
-    padding: '0',
-  },
-  pointMinusText: {
-    color: '#ff0000',
-    padding: '0',
-  },
-  cardText: {
-    color: '#000000',
-    padding: '0',
-  },
-  test: {
-    color: '#ff0000',
-    backgroundColor: '#00ff00',
-    padding: '0',
-  },
-}));
+import { Card, CardContent, Typography, Grid, Grow } from '@mui/material';
 
 function GameCard(props) {
-  const classes = useGameCardStyles();
   const pointCard = ('pointCard' in props) ? props.pointCard : false;
   const open = ('open' in props) ? props.open : true;
   const half = ('half' in props) ? props.half : false;
   const number = props.number;
-  const contentClass = pointCard ? (open ? classes.pointOpenContent : classes.pointCloseContent) : (open ? classes.cardOpenContent : classes.cardCloseContent);
-  const gridClass = half ? classes.halfGrid : classes.fullGrid;
-  const textClass = pointCard ? ((number < 0) ? classes.pointMinusText : classes.pointPlusText) : classes.cardText;
-  const numTypography = open ? <Typography className={textClass} display="inline">{number}</Typography> : <div />;
+
+  const contentSx = {
+    padding: '0.2em',
+  };
+  const halfWidth = 1.6 * 1.3; // 1.3倍
+  const fullWidth = 2.8 * 1.3; // 1.3倍
+  const gridSx = half ? { minWidth: `${halfWidth}em`, minHeight: '3.8em' } : { minWidth: `${fullWidth}em`, minHeight: '3.8em' };
+  const gridSxMerged = { justifyContent: 'center', alignItems: 'center', ...gridSx };
+  const textSx = pointCard
+    ? (number < 0 ? { color: '#ff0000', padding: 0 } : { color: '#0000ff', padding: 0 })
+    : { color: '#000000', padding: 0 };
+
+  if (pointCard) {
+    contentSx.backgroundColor = open ? undefined : '#9090ff';
+  } else {
+    contentSx.backgroundColor = open ? undefined : '#b0b0b0';
+  }
+
+  const numTypography = open ? <Typography sx={textSx} display="inline">{number}</Typography> : <div />;
   return (
     <Grow in={true}>
-      <Card className={classes.root}>
-        <CardContent className={contentClass}>
-          <Grid container direction="row" justify="center" alignItems="center" className={gridClass}>
+      <Card sx={{ margin: '0.1em' }}>
+        <CardContent sx={contentSx}>
+          <Grid container direction="row" sx={gridSxMerged}>
             {numTypography}
           </Grid>
         </CardContent>

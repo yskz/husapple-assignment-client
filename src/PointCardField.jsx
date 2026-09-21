@@ -1,15 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { PointCard } from './GameCard';
-
-const useStyles = makeStyles((_theme) => ({
-  root: {
-    width: '100vw',
-    minHeight: '5em',
-  },
-}));
 
 function getPointCards(numbers, openCount) {
   return numbers.map((v, i) => {
@@ -23,12 +15,11 @@ function getPointCards(numbers, openCount) {
 }
 
 function PointCardField(props) {
-  const classes = useStyles();
   const openCount = ('openCount' in props) ? props.openCount : 1;
   const numbers = props.numbers;
   const pointCards = (numbers.length > 0) ? getPointCards(numbers, openCount) : <div />;
   return (
-    <Grid container direction="row" justify="flex-start" alignItems="center" className={classes.root}>
+    <Grid container direction="row" alignItems="center" sx={{ width: '100vw', minHeight: '5em', justifyContent: 'flex-start' }}>
       {pointCards}
     </Grid>
   );

@@ -5,12 +5,12 @@ HUS「プログラミング応用」のアプリケーションクライアン�
 
 ## インストール
 
-`yarn install`
+`npm install`
 
 
 ## 実行
 
-`yarn start`
+`npm start`
 
 
 ## 環境設定

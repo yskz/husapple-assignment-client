@@ -1,26 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid, List, ListItem, ListItemText } from '@material-ui/core';
-
-const useStyles = makeStyles((_theme) => ({
-  root: {
-    width: '100vw',
-  },
-  rootArea: {
-    width: '100%',
-  },
-  listGrid: {
-  },
-  list: {
-    minWidth: '35em',
-    overflow: 'auto',
-    backgroundColor: '#f0f0f0',
-  },
-}));
+import { Box, Grid, List, ListItem, ListItemText } from '@mui/material';
 
 function MatchingPlayerListBoard(props) {
-  const classes = useStyles();
   const playerItems = props.playerList.map(v => {
     return (
       <ListItem key={v.id}>
@@ -30,11 +12,11 @@ function MatchingPlayerListBoard(props) {
   });
   const listHeightProps = props.height ? { height: props.height } : {}
   return (
-    <Grid className={classes.root} container direction="row" justify="center" alignItems="center">
-      <Box className={classes.rootArea}>
+    <Grid container direction="row" alignItems="center" sx={{ justifyContent: 'center', width: '100vw' }}>
+      <Box sx={{ width: '100%' }}>
         <Grid item>
-          <Grid className={classes.listGrid} container direction="row" justify="center" alignItems="center">
-            <List className={classes.list} dense={true} style={{...listHeightProps}}>
+          <Grid container direction="row" alignItems="center" sx={{ justifyContent: 'center' }}>
+            <List dense={true} sx={{ minWidth: '35em', overflow: 'auto', backgroundColor: '#f0f0f0' }} style={{...listHeightProps}}>
               {playerItems}
             </List>
           </Grid>

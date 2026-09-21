@@ -1,15 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Typography } from '@mui/material';
 import { BidGrid, ScoreGrid } from './PlayerCardField';
 import { PlayerCard } from './GameCard';
-
-const useHandGridStyles = makeStyles((_theme) => ({
-  root: {
-    minHeight: '5em',
-  },
-}));
 
 function getHandCards(numbers, procSelect) {
   return numbers.map((v, i) => {
@@ -27,13 +20,12 @@ function getHandCards(numbers, procSelect) {
 }
 
 export function HandGrid(props) {
-  const classes = useHandGridStyles();
   const disableSelect = ('disableSelect' in props) ? props.disableSelect : false;
   const procSelect = !disableSelect && ('procSelect' in props) ? props.procSelect : null;
   const numbers = props.numbers;
   const cards = (numbers.length > 0) ? getHandCards(numbers, procSelect) : <div />;
   return (
-    <Grid container direction="row" justify="flex-start" alignItems="center" className={classes.root}>
+    <Grid container direction="row" alignItems="center" sx={{ minHeight: '5em', justifyContent: 'flex-start' }}>
       {cards}
     </Grid>
   );
@@ -46,29 +38,7 @@ HandGrid.propTypes = {
 };
 
 
-const useStyles = makeStyles((_theme) => ({
-  root: {
-    minHeight: '7em',
-  },
-  nameText: {
-    color: '#ffffff',
-    marginLeft: '1.8em',
-    padding: 0,
-    fontSize: '0.8em',
-  },
-  info: {
-    width: '100vw',
-    paddingLeft: '1.0em',
-    paddingRight: '1.0em',
-    minHeight: '5em',
-  },
-  handGrid: {
-    marginRight: '4em',
-  },
-}));
-
 function MyPlayerCardField(props) {
-  const classes = useStyles();
   const handProps = { numbers: props.numbers };
   if ('disableSelect' in props) {
     handProps.disableSelect = props.disableSelect;
@@ -77,17 +47,17 @@ function MyPlayerCardField(props) {
     handProps.procSelect = props.procSelect;
   }
   return (
-    <Grid container direction="column" justify="flex-start" alignItems="flex-start">
+    <Grid container direction="column" alignItems="flex-start" sx={{ minHeight: '7em', justifyContent: 'flex-start' }}>
       <Grid item>
-        <Grid container direction="row" justify="flex-start" alignItems="center">
-          <Typography className={classes.nameText}>{props.name}</Typography>
+        <Grid container direction="row" alignItems="center" sx={{ justifyContent: 'flex-start' }}>
+          <Typography sx={{ color: '#ffffff', marginLeft: '1.8em', padding: 0, fontSize: '0.8em' }}>{props.name}</Typography>
         </Grid>
       </Grid>
       <Grid item>
-        <Grid container direction="row" justify="space-between" alignItems="center" className={classes.info}>
+        <Grid container direction="row" alignItems="center" sx={{ width: '100vw', paddingLeft: '1.0em', paddingRight: '1.0em', minHeight: '5em', justifyContent: 'space-between' }}>
           <Grid item>
-            <Grid container direction="row" justify="flex-start" alignItems="center">
-              <Grid item className={classes.handGrid}>
+            <Grid container direction="row" alignItems="center" sx={{ justifyContent: 'flex-start' }}>
+              <Grid item sx={{ marginRight: '4em' }}>
                 <HandGrid {...handProps} />
               </Grid>
               <Grid item>

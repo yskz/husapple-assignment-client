@@ -1,5 +1,6 @@
-import Protocol from './protocol';
+import * as ProtocolModule from './protocol';
 import { issueRequestId } from './RequestMessage';
+const Protocol = ProtocolModule;
 import ISessionManager from './SessionManager';
 const Message = Protocol.Message;
 

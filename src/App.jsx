@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import ISessionManager from './SessionManager';
 import AppStateId from './AppState';
 import InputPlayerName from './InputPlayerName';
@@ -9,15 +8,7 @@ import Matching from './Matching';
 import Game from './Game';
 import Error from './Error';
 
-const useStyles = makeStyles((_theme) => ({
-  container: {
-    width: '100vw',
-    height: '100vh',
-  },
-}));
-
 function App() {
-  const classes = useStyles();
   const [stateId, _setStateId] = useState(AppStateId.inputPlayerName);
   const [playerName, setPlayerName] = useState("");
   const [errorMessage, _setErrorMessage] = useState(null);
@@ -28,7 +19,7 @@ function App() {
       setStateId(AppStateId.error);
     }
   }
-  const setStateId = (id) => {
+  const setStateId = (id, playerNameForSession) => {
     if (id === stateId) return;
     switch(id) {
     case AppStateId.matching: {
@@ -37,7 +28,8 @@ function App() {
       if (curSession) {
         sessionManager.removeSession(curSession);
       }
-      const session = sessionManager.createSession(setErrorMessage, playerName);
+      const name = playerNameForSession || playerName;
+      const session = sessionManager.createSession(setErrorMessage, name);
       session.start();
       break;
     }
@@ -46,18 +38,15 @@ function App() {
     }}
     _setStateId(id);
   }
-  const refLatestSetStateId = useRef();
-  refLatestSetStateId.current = setStateId;
-
-  useEffect(() => {
-    const setStateId = refLatestSetStateId.current;
-    setStateId((playerName.length > 0) ? AppStateId.matching : AppStateId.inputPlayerName);
-  }, [playerName]);
+  const decidePlayerName = (name) => {
+    setPlayerName(name);
+    setStateId(AppStateId.matching, name);
+  }
 
   let content;
   switch(stateId) {
   case AppStateId.inputPlayerName: {
-    content = <InputPlayerName setPlayerName={setPlayerName} />
+    content = <InputPlayerName setPlayerName={decidePlayerName} />
     break;
   }
   case AppStateId.matching: {
@@ -74,7 +63,7 @@ function App() {
   }}
   return (
     <div className="App">
-      <Grid className={classes.container} container direction="row" justify="center" alignItems="center">
+      <Grid container direction="row" alignItems="center" sx={{ width: '100vw', height: '100vh', justifyContent: 'center' }}>
         {content}
       </Grid>
     </div>

@@ -1,23 +1,8 @@
 import React, { useState } from 'react';
-//import './App.css';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid, TextField, Button } from '@material-ui/core';
-
-const useStyles = makeStyles((_theme) => ({
-  root: {
-  },
-  inputRow: {
-  },
-  playerNameField: {
-  },
-  setButton: {
-    marginLeft: '1em',
-  },
-}));
+import { Grid, TextField, Button } from '@mui/material';
 
 function InputPlayerName(props) {
-  const classes = useStyles();
   const [name, setName] = useState("");
   const procInputPlayerName = (ev) => {
     setName(ev.target.value.trim());
@@ -29,16 +14,14 @@ function InputPlayerName(props) {
   }
   return (
     <div className="InputPlayerName">
-      <div className={classes.root}>
-        <Grid className={classes.inputRow} container direction="row" justify="center" alignItems="center">
-          <Grid item>
-            <TextField className={classes.playerNameField} id="player-name" label="プレイヤー名" value={name} margin="none" onChange={procInputPlayerName} />
-          </Grid>
-          <Grid item>
-            <Button className={classes.setButton} variant="contained" color="primary" disabled={name.length <= 0} onClick={procDecidePlayerName}>設定</Button>
-          </Grid>
+      <Grid container direction="row" alignItems="center" sx={{ justifyContent: 'center' }}>
+        <Grid item>
+          <TextField id="player-name" label="プレイヤー名" value={name} margin="none" onChange={procInputPlayerName} />
         </Grid>
-      </div>
+        <Grid item>
+          <Button variant="contained" color="primary" disabled={name.length <= 0} onClick={procDecidePlayerName} sx={{ marginLeft: '1em' }}>設定</Button>
+        </Grid>
+      </Grid>
     </div>
   );
 }

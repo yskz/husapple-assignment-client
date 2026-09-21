@@ -1,5 +1,6 @@
 import Session from './Session';
-import Protocol from './protocol';
+import * as ProtocolModule from './protocol';
+const Protocol = ProtocolModule;
 
 class SessionManager {
     constructor() {
